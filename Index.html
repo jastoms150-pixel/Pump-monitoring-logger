@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pump Logger</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="manifest" href="manifest.json" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Pump Logger</h1>
+  </header>
+
+  <main>
+    <section>
+      <label>Tank:</label>
+      <select id="tankSelect">
+        <option>Collection Tank 1</option>
+        <option>Collection Tank 2</option>
+        <option>Collection Tank 3</option>
+        <option>Collection Tank 4</option>
+        <option>Settling Tank</option>
+      </select>
+    </section>
+
+    <section>
+      <label>Pump:</label>
+      <select id="pumpSelect">
+        <option>Pump 1</option>
+        <option>Pump 2</option>
+        <option>Pump 3</option>
+        <option>Pump 4</option>
+        <option>Pump 5</option>
+      </select>
+    </section>
+
+    <section>
+      <label>Depth (m):</label>
+      <input type="number" id="depthInput" step="0.01" />
+    </section>
+
+    <section>
+      <label>Status:</label>
+      <select id="statusSelect">
+        <option>Running</option>
+        <option>Stopped</option>
+        <option>Fault</option>
+      </select>
+    </section>
+
+    <section>
+      <label>Notes:</label>
+      <textarea id="notesInput"></textarea>
+    </section>
+
+    <div class="buttons">
+      <button id="saveBtn">Save Log</button>
+      <button id="clearBtn">Clear Logs</button>
+    </div>
+
+    <div class="buttons">
+      <button id="exportCsvBtn">Export CSV</button>
+      <button id="settingsBtn">Settings ⚙️</button>
+      <button id="chartBtn">View Chart 📊</button>
+    </div>
+
+    <h2>Logs</h2>
+    <ul id="logsList"></ul>
+  </main>
+
+  <!-- Settings Section -->
+  <section id="settingsSection" class="modal">
+    <h2>Settings</h2>
+    <label>Depth Threshold (m):</label>
+    <input type="number" id="thresholdInput" step="0.01" />
+    <div class="buttons">
+      <button id="saveSettings">Save</button>
+      <button id="closeSettings">Close</button>
+    </div>
+  </section>
+
+  <!-- Chart Section -->
+  <section id="chartSection" class="modal">
+    <h2>Depth Chart</h2>
+    <label>Select Tank:</label>
+    <select id="chartTank">
+      <option>Collection Tank 1</option>
+      <option>Collection Tank 2</option>
+      <option>Collection Tank 3</option>
+      <option>Collection Tank 4</option>
+      <option>Settling Tank</option>
+    </select>
+    <label>Select Pump:</label>
+    <select id="chartPump">
+      <option>Pump 1</option>
+      <option>Pump 2</option>
+      <option>Pump 3</option>
+      <option>Pump 4</option>
+      <option>Pump 5</option>
+    </select>
+    <canvas id="depthChart"></canvas>
+    <div class="buttons">
+      <button id="plotBtn">Plot</button>
+      <button id="closeChart">Close</button>
+    </div>
+  </section>
+
+  <script src="main.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+  </script>
+</body>
+</html>
